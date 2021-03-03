@@ -1,0 +1,223 @@
+*{
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+body{
+  margin: 0px;
+  background-color: #f9f9f9;
+
+}
+footer{
+  height: 25px;
+  color: grey;
+}
+h1, h2, h3, h4{
+  font-family: "Zilla Slab";
+}
+hr{
+  color: #acacac;
+  width: 100%;
+}
+p,span{
+  font-family: Raleway;
+  padding-left: 10px;
+}
+span{
+  /* padding: 16px 0px; */
+}
+.task{
+  padding: 8px 0px;
+}
+.task:hover{
+  background-color: #ececec;
+}
+.task button{
+  background: none;
+  color: grey;
+}
+/* .close, .edit{
+  float: right;
+  visibility: hidden;
+  padding-left: 4px;
+} */
+.close, .edit{
+  padding: 0 4px;
+  /* padding-bottom: 6px; */
+}
+.action_bar{
+  float: right;
+  visibility: hidden;
+  padding: 0 8px;
+
+}
+.task:hover .action_bar{
+  visibility: visible;
+}
+.close:hover{
+    /* background-color: orangered;
+    color:white; */
+}
+.overdue{
+  /* display: none; */
+  color:orangered;
+  background-color: #fee;
+}
+.deleted{
+  display: none;
+  /* background-color: #ffc2c2; */
+}
+.check{
+  width: 30px;
+}
+
+.completed .check{
+  color: green;
+  content: "✓";
+}
+.completed span{
+  text-decoration: line-through;
+  color: darkgrey;
+}
+
+.hidden{
+  display: none;
+}
+section{
+  overflow-y: hidden;
+}
+.main{
+  width: 45%;
+  margin: auto;
+  margin-top: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  flex-flow: column;
+  height: 94%;
+
+}
+.tasklist{
+  overflow-y: auto;
+}
+.menu{
+  width: 30%;
+  /* margin: 20px;
+  margin-top: 15px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: white;
+}
+button{
+  background-color: orangered;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:not(.tasklist button){
+  background-color: orangered;
+  height: 25px;
+  margin: 5px 0;
+  font-family: Raleway;
+}
+.hideCompleted{
+  width: 100%;
+}
+.postSubmit{
+  width: 25%;
+  float:right;
+}
+fieldset{
+  margin: 0;
+}
+form button,input,select{
+  height: 25px;
+  margin: 5px 0;
+  font-family: Raleway;
+}
+select{
+  width: 110px;
+  font-family: Raleway;
+}
+label{
+  font-family: Raleway;
+  font-size: small;
+}
+::placeholder{
+  color: #6f6f6f;
+  opacity: 1;
+}
+input[type=text]{
+  width: 79.75%;
+}
+input[type=date]{
+  font-family: sans-serif;
+}
+.outer_column {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.outer_row {
+  display: flex;
+  flex-flow: row;
+  height: 100%;
+}
+.inner_remaining {
+  flex-grow: 1;
+}
+.dateSection{
+  margin: 25px 0;
+}
+.dateSection h3{
+  color: #666;
+  margin: 10px 0;
+}
+.dateSection hr{
+  color: #d5d5d5;
+}
+
+pre {
+  display: inline;
+  font-family: Raleway;
+}
+
+.calendar{
+  border-radius: 4px;
+  padding: 1.5px;
+  background-color: lightgrey;
+  height: auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: 1.5px;
+  margin: 15px;
+}
+.cal-cell{
+  float: left;
+  width: 75px;
+  height: 100%;
+  min-height: 150px;
+  background-color: white;
+  /* border: 2px solid lightgrey; */
+}
+.cal-cell-header{
+  background-color: gainsboro;
+  padding: 3px;
+  border-radius: 2px;
+  margin-bottom: 2px;
+  border: 1px solid #eaeaea;
+}
+.cal-cell-header p{
+  text-align: left;
+  margin: 0px;
+  padding: 0;
+  font-family: Raleway;
+  font-size: x-small;
+}
