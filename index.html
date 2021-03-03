@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>CS Senior Project</title>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/b0c82979b3.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <section class="outer_row">
+    <div class="menu">
+      <fieldset>
+        <form name="postForm" autocomplete="off">
+           <label for="name"><pre>Task:         </pre></label>
+           <input type="text" id="name" class="nameField" placeholder="New Task">
+           <br>
+           <label for="date">Due Date:</label>
+           <input type="date" id="date" class="dateField" placeholder="Due Date">
+           <br>
+           <label for="timeEstimate">Estimated Time:</label>
+           <select id="timeEstimate" disabled>
+             <option>----</option>
+             <option>< 1 hour</option>
+             <option>several hours</option>
+             <option>all day</option>
+             <option>several days</option>
+           </select>
+
+          <button id="postSubmit" class="postSubmit">Add</button>
+        </form>
+      </fieldset>
+      <button class="hideCompleted">Hide completed</button>
+    </div>
+    <div class="main">
+      <h2>To Do</h2>
+      <hr>
+      <div class="tasklist">
+      </div>
+    </div>
+  </section>
+  <!-- <footer></footer> -->
+<script src='test.js'></script>
+<!-- <script src='calendar.js'></script> -->
+</body>
+</html>
