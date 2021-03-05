@@ -133,7 +133,12 @@ function insertDatesInOrder(dateSection){
       }else if (dateSectionList[0].dataset.date>dateSection.dataset.date) {
         tasklist.prepend(dateSection);
         // console.log("added to beginning of list");
+      }else if(len == 2){
+        // console.log("Initiating Midlist Insertion of ",dateSection);
+        tasklist.insertBefore(dateSection, dateSectionList[1]);
       }else{
+        // console.log("Initiating Midlist Insertion of ",dateSection);
+        // console.log(len-1);
         for(let i = len-1; i>1; i--){
           if(dateSectionList[i].dataset.date>dateSection.dataset.date
             && dateSection.dataset.date>dateSectionList[i-1].dataset.date){
