@@ -10,7 +10,6 @@ body {
 body{
   margin: 0px;
   background-color: #f9f9f9;
-
 }
 footer{
   height: 25px;
@@ -40,11 +39,7 @@ span{
   background: none;
   color: grey;
 }
-/* .close, .edit{
-  float: right;
-  visibility: hidden;
-  padding-left: 4px;
-} */
+
 .close, .edit{
   padding: 0 4px;
   /* padding-bottom: 6px; */
@@ -121,11 +116,19 @@ button{
   border: none;
   cursor: pointer;
 }
-button:not(.tasklist button){
+button:not(.tasklist button) {
   background-color: orangered;
   height: 25px;
   margin: 5px 0;
   font-family: Raleway;
+}
+.editForm button{
+  background-color: orangered;
+  color: white;
+  height: 25px;
+  margin: 5px;
+  font-family: Raleway;
+  float: right;
 }
 .hideCompleted{
   width: 100%;
@@ -137,7 +140,7 @@ button:not(.tasklist button){
 fieldset{
   margin: 0;
 }
-form button,input,select{
+form :is(button,input,select){
   height: 25px;
   margin: 5px 0;
   font-family: Raleway;
@@ -150,15 +153,33 @@ label{
   font-family: Raleway;
   font-size: small;
 }
-::placeholder{
+input[type=text]::placeholder{
   color: #6f6f6f;
   opacity: 1;
 }
 input[type=text]{
+  padding: 5px;
+}
+.nameField{
   width: 79.75%;
 }
 input[type=date]{
   font-family: sans-serif;
+}
+.editForm{
+  /* margin: 0 5px; */
+  padding-left: 40px;
+}
+.editForm input[type=text]{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1.5px solid grey;
+  border-radius: 3px;
+}
+
+.editForm :is(button,input,select){
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .outer_column {
   display: flex;

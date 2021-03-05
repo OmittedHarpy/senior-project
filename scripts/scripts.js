@@ -157,23 +157,29 @@ function datesIsSorted(lst){
 //------------------------------------------------------------------------------
 
 function constructCard(task){
-  const div = document.createElement('div');
+  const taskElement = document.createElement('div');
+  const taskContent = document.createElement('div');
+  taskContent.classList.add("task_content");
   const p1 = document.createElement('span');
   const completeBtn = constructCompleteBtn(task);
   const actionBar = document.createElement('span');
   actionBar.classList.add("action_bar");
   const deleteBtn = constructDltBtn();
   const editBtn = constructEditBtn();
-  div.id='task'+task.id;
+  taskElement.id='task'+task.id;
   p1.textContent = task.desc;
-  div.appendChild(completeBtn);
-  div.appendChild(p1);
-  div.appendChild(actionBar);
+  p1.addEventListener("dblclick",editTask);
+  taskElement.append(taskContent);
+  taskContent.appendChild(completeBtn);
+  taskContent.appendChild(p1);
+  const editForm = constructEditForm();
+  taskContent.appendChild(actionBar);
   actionBar.appendChild(editBtn);
   actionBar.appendChild(deleteBtn);
+  taskElement.append(editForm);
 
-  div.className="task";
-  return div;
+  taskElement.className="task";
+  return taskElement;
 }
 
 function constructDltBtn(){
@@ -194,18 +200,54 @@ function constructCompleteBtn(task){
   completeBtn.addEventListener('click',completeTask);
   return completeBtn;
 }
+function constructEditForm(){
+  const editForm = document.createElement('form');
+  editForm.classList.add("editForm");
+  editForm.classList.add("hidden");
+  const descField = document.createElement('input');
+  descField.type = 'text';
+  const saveBtn = constructSaveBtn();
+  const cancelBtn = constructCancelBtn();
+  editForm.append(descField,saveBtn,cancelBtn);
+  return editForm;
+}
+function constructSaveBtn(){
+  const saveBtn = document.createElement('button');
+  saveBtn.className="save";
+  saveBtn.textContent="Save";
+  saveBtn.addEventListener("click",saveEdit);
+  return saveBtn;
+}
+function constructCancelBtn(){
+  const cancelBtn = document.createElement('button');
+  cancelBtn.className="cancel";
+  cancelBtn.textContent="Cancel";
+  cancelBtn.addEventListener("click",cancelEdit);
+  return cancelBtn;
+}
+function saveEdit(ev){
+  ev.preventDefault();
+  hideEditView();
+}
+function cancelEdit(ev){
+  ev.preventDefault();
+  hideEditView();
+}
 function constructEditBtn(){
   const editBtn = document.createElement('button');
   editBtn.className="edit";
+  editBtn.addEventListener("click",editTask);
   const editIcon = document.createElement('i');
   editIcon.className = "fas fa-pencil-alt fa-sm";
   editBtn.append(editIcon);
   return editBtn;
 }
 function deleteTask(ev){
+  ev.preventDefault();
   changeState(ev,"deleted");
 }
 function completeTask(ev){
+  ev.preventDefault();
   this.textContent="\u2713";
   changeState(ev,"completed");
 }
@@ -229,6 +271,7 @@ function changeState(ev,state){
 
 var completedVisible = true;
 function filterCompletedTasks(ev){
+  ev.preventDefault();
   if(completedVisible){
     this.textContent = "Show Completed";
   }else{
@@ -249,10 +292,22 @@ function toggleCompletedTasks(){
   }
 }
 
-function editTask(){
-
+function editTask(ev){
+  ev.preventDefault();
+  showEditView();
 }
-
+function showEditView(){
+  const taskContent = document.querySelector(".task_content");
+  const editForm = document.querySelector(".editForm");
+  taskContent.classList.add("hidden");
+  editForm.classList.remove("hidden");
+}
+function hideEditView(){
+  const taskContent = document.querySelector(".task_content");
+  const editForm = document.querySelector(".editForm");
+  taskContent.classList.remove("hidden");
+  editForm.classList.add("hidden");
+}
 function divFromTask(task){
   console.log(task);
   var idStr = "task"+task.id.toString();
