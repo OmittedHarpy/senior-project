@@ -258,12 +258,13 @@ function completeTask(ev){
 }
 function changeState(ev,state){
   const tasks = obj["tasks"];
-  if(state==="deleted"){
-    var actionBar = ev.target.parentElement;
-    var card = actionBar.parentElement;
-  }else{
-    var card = ev.target.parentElement;
-  }
+  // if(state==="deleted"){
+  //   var actionBar = ev.target.parentElement;
+  //   var card = actionBar.parentElement;
+  // }else{
+  //   var card = ev.target.parentElement;
+  // }
+  var card = getRoot(ev.target);
   card.classList.add(state);
   var idNum = taskFromDiv(card);
   for (let task of tasks){
@@ -273,7 +274,12 @@ function changeState(ev,state){
   }
   storeObj(obj);
 }
-
+function getRoot(element){
+  while(!element.classList.contains("task")){
+    element = element.parentElement;
+  }
+  return element;
+}
 var completedVisible = true;
 function filterCompletedTasks(ev){
   ev.preventDefault();
