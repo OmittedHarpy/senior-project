@@ -106,10 +106,9 @@ function findDateSection(date){
     }
 }
 function constructDateSection(taskDate){
-  var div = document.createElement('div');
+  var div = createElement('div',"dateSection");
   var p = document.createElement('h3');
   var hr = document.createElement('hr');
-  div.classList.add("dateSection");
   div.dataset.date = taskDate;
   if(taskDate===""){
     p.textContent="No Date";
@@ -162,13 +161,11 @@ function datesIsSorted(lst){
 //------------------------------------------------------------------------------
 
 function constructCard(task){
-  const taskElement = document.createElement('div');
-  const taskContent = document.createElement('div');
-  taskContent.classList.add("task_content");
-  const p1 = document.createElement('span');
+  const taskElement = createElement('div',"task");
+  const taskContent = createElement('div',"task_content");
+  const p1 = createElement('span',"desc");
   const completeBtn = constructCompleteBtn(task);
-  const actionBar = document.createElement('span');
-  actionBar.classList.add("action_bar");
+  const actionBar = createElement('span',"action_bar");
   const deleteBtn = constructDltBtn();
   const editBtn = constructEditBtn();
   taskElement.id='task'+task.id;
@@ -183,20 +180,17 @@ function constructCard(task){
   actionBar.appendChild(deleteBtn);
   taskElement.append(editForm);
 
-  taskElement.className="task";
   return taskElement;
 }
 
 function constructDltBtn(){
-  const deleteBtn = document.createElement('button');
-  deleteBtn.className="close";
+  const deleteBtn = createElement('button',"close");
   deleteBtn.textContent="\u00D7";
   deleteBtn.addEventListener("click",deleteTask);
   return deleteBtn;
 }
 function constructCompleteBtn(task){
-  const completeBtn = document.createElement('button');
-  completeBtn.className="check";
+  const completeBtn = createElement('button',"check");
   if(task.status=="active"){
     completeBtn.textContent="\u25EF";
   } else if (task.status=="completed"){
@@ -206,10 +200,9 @@ function constructCompleteBtn(task){
   return completeBtn;
 }
 function constructEditForm(){
-  const editForm = document.createElement('form');
-  editForm.classList.add("editForm");
+  const editForm = createElement('form',"editForm");
   editForm.classList.add("hidden");
-  const descField = document.createElement('input');
+  const descField = createElement('input',"descField");
   descField.type = 'text';
   const saveBtn = constructSaveBtn();
   const cancelBtn = constructCancelBtn();
@@ -217,29 +210,20 @@ function constructEditForm(){
   return editForm;
 }
 function constructSaveBtn(){
-  const saveBtn = document.createElement('button');
-  saveBtn.className="save";
+  const saveBtn = createElement('button',"save");
   saveBtn.textContent="Save";
   saveBtn.addEventListener("click",saveEdit);
   return saveBtn;
 }
 function constructCancelBtn(){
-  const cancelBtn = document.createElement('button');
-  cancelBtn.className="cancel";
+  const cancelBtn = createElement('button',"cancel");
   cancelBtn.textContent="Cancel";
   cancelBtn.addEventListener("click",cancelEdit);
   return cancelBtn;
 }
-function saveEdit(ev){
-  ev.preventDefault();
-  hideEditView();
-}
-function cancelEdit(ev){
-  ev.preventDefault();
-  hideEditView();
-}
+
 function constructEditBtn(){
-  const editBtn = document.createElement('button');
+  const editBtn = createElement('button',"edit");
   editBtn.className="edit";
   editBtn.addEventListener("click",editTask);
   const editIcon = document.createElement('i');
@@ -274,10 +258,16 @@ function changeState(ev,state){
   }
   storeObj(obj);
 }
+
 function getRoot(element){
   while(!element.classList.contains("task")){
     element = element.parentElement;
   }
+  return element;
+}
+function createElement(tag, className){
+  const element = document.createElement(tag);
+  if(className) element.classList.add(className);
   return element;
 }
 var completedVisible = true;
@@ -305,17 +295,40 @@ function toggleCompletedTasks(){
 
 function editTask(ev){
   ev.preventDefault();
-  showEditView();
+  let taskElement = getRoot(ev.target);
+  let taskDesc = taskElement.querySelector('.desc').innerHTML;
+  let descField = taskElement.querySelector('.descField');
+  descField.value = taskDesc;
+  showEditView(taskElement);
+
 }
-function showEditView(){
-  const taskContent = document.querySelector(".task_content");
-  const editForm = document.querySelector(".editForm");
+function saveEdit(ev){
+  ev.preventDefault();
+  let taskElement = getRoot(ev.target);
+  let taskDesc = taskElement.querySelector('.desc');
+  let descField = taskElement.querySelector('.descField');
+  taskDesc.innerHTML = descField.value;
+  let taskID = taskFromDiv(taskElement);
+  let task = getTaskFromID(taskID);
+  task.desc = descField.value;
+  storeObj(obj);
+  hideEditView(taskElement);
+}
+function cancelEdit(ev){
+  ev.preventDefault();
+  let taskElement = getRoot(ev.target);
+  hideEditView(taskElement);
+}
+function showEditView(element){
+
+  const taskContent = element.querySelector(".task_content");
+  const editForm = element.querySelector(".editForm");
   taskContent.classList.add("hidden");
   editForm.classList.remove("hidden");
 }
-function hideEditView(){
-  const taskContent = document.querySelector(".task_content");
-  const editForm = document.querySelector(".editForm");
+function hideEditView(element){
+  const taskContent = element.querySelector(".task_content");
+  const editForm = element.querySelector(".editForm");
   taskContent.classList.remove("hidden");
   editForm.classList.add("hidden");
 }
@@ -332,6 +345,15 @@ function taskFromDiv(div){
   console.log(idStr);
   var idNum = parseInt(idStr);
   return idNum;
+}
+
+function getTaskFromID(idNum){
+  let taskList = obj['tasks'];
+  for (let task of taskList){
+    if(task.id==idNum){
+      return task;
+    }
+  }
 }
 
 function storeObj(obj){
