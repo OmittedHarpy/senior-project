@@ -209,36 +209,57 @@ pre {
   display: inline;
   font-family: Raleway;
 }
-
+.calendar-section{
+  width: 80%;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
 .calendar{
   border-radius: 4px;
   padding: 1.5px;
   background-color: lightgrey;
   height: auto;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  grid-gap: 1.5px;
-  margin: 15px;
+  grid-template-columns: repeat(7, 1fr);
+  /* auto auto auto auto auto auto auto; */
+  grid-gap: 2px;
+  /* margin: 15px; */
 }
 .cal-cell{
   float: left;
-  width: 75px;
+  /* width: 75px; */
   height: 100%;
   min-height: 150px;
   background-color: white;
   /* border: 2px solid lightgrey; */
 }
+.cal-cell p{
+  padding: 0;
+  margin: 5px;
+  font-size: large;
+}
 .cal-cell-header{
-  background-color: gainsboro;
+  background-color: orangered;
   padding: 3px;
   border-radius: 2px;
-  margin-bottom: 2px;
-  border: 1px solid #eaeaea;
+  /* margin-bottom: 2px; */
+  /* border: 1px solid #eaeaea; */
 }
 .cal-cell-header p{
   text-align: left;
   margin: 0px;
   padding: 0;
+  font-family: "Zilla Slab";
+  color: #fdeeee;
+  /* font-size: x-small; */
+}
+a{
   font-family: Raleway;
-  font-size: x-small;
+  color: #797979;
+}
+.home-link{
+  float: right;
 }

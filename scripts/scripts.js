@@ -128,16 +128,11 @@ function insertDatesInOrder(dateSection){
       let len = dateSectionList.length;
       if(dateSectionList[len-1].dataset.date<dateSection.dataset.date){
         tasklist.append(dateSection);
-        // console.log("added to end of list");
       }else if (dateSectionList[0].dataset.date>dateSection.dataset.date) {
         tasklist.prepend(dateSection);
-        // console.log("added to beginning of list");
       }else if(len == 2){
-        // console.log("Initiating Midlist Insertion of ",dateSection);
         tasklist.insertBefore(dateSection, dateSectionList[1]);
       }else{
-        // console.log("Initiating Midlist Insertion of ",dateSection);
-        // console.log(len-1);
         for(let i = len-1; i>1; i--){
           if(dateSectionList[i].dataset.date>dateSection.dataset.date
             && dateSection.dataset.date>dateSectionList[i-1].dataset.date){
@@ -145,7 +140,6 @@ function insertDatesInOrder(dateSection){
           }
         }
       }
-      // console.log(dateSectionList);
   }else{
     tasklist.append(dateSection);
     console.log("First item to be added");
@@ -224,7 +218,6 @@ function constructCancelBtn(){
 
 function constructEditBtn(){
   const editBtn = createElement('button',"edit");
-  editBtn.className="edit";
   editBtn.addEventListener("click",editTask);
   const editIcon = document.createElement('i');
   editIcon.className = "fas fa-pencil-alt fa-sm";
@@ -242,20 +235,11 @@ function completeTask(ev){
 }
 function changeState(ev,state){
   const tasks = obj["tasks"];
-  // if(state==="deleted"){
-  //   var actionBar = ev.target.parentElement;
-  //   var card = actionBar.parentElement;
-  // }else{
-  //   var card = ev.target.parentElement;
-  // }
   var card = getRoot(ev.target);
   card.classList.add(state);
   var idNum = taskFromDiv(card);
-  for (let task of tasks){
-    if(task.id==idNum){
-      task.status=state;
-    }
-  }
+  let task = getTaskFromID(idNum);
+  task.status = state;
   storeObj(obj);
 }
 
@@ -270,7 +254,7 @@ function createElement(tag, className){
   if(className) element.classList.add(className);
   return element;
 }
-var completedVisible = true;
+var completedVisible = true; ///This is a random global variable in the middle of a file
 function filterCompletedTasks(ev){
   ev.preventDefault();
   if(completedVisible){
@@ -282,7 +266,6 @@ function filterCompletedTasks(ev){
   completedVisible = !completedVisible;
 }
 function toggleCompletedTasks(){
-  // window.alert("This button doesn't do anything yet!");
   let completedTasks = document.querySelectorAll('.completed');
   for(let i = 0; i < completedTasks.length; i++){
     if(completedVisible){
