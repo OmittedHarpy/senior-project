@@ -7,11 +7,6 @@ let init = function(e){
   obj = JSON.parse(text);
   console.log(obj);
   let taskList = obj['tasks'];
-  // for (let task of taskList){
-  //   let taskText = document.createElement('p');
-  //   taskText.innerHTML = task.desc+"   "+task.date;
-  //   section.append(taskText);
-  // }
   constructMonthHeading();
   constructCalendar();
   populateCalendar(taskList);
@@ -68,19 +63,13 @@ function populateCalendar(taskList){
     for(let task of taskList){
       if(task.status != "deleted"){
         let date = new Date(task.date+' 00:00:00');
-        date.setHours(0);
-        date.setMinutes(0);
-        date.setSeconds(0);
-        date.setMilliseconds(0);
+        date = zeroTime(date);
         let cellDate = new Date(calCell.dataset.date);
-        cellDate.setHours(0);
-        cellDate.setMinutes(0);
-        cellDate.setSeconds(0);
-        cellDate.setMilliseconds(0);
+        cellDate=zeroTime(cellDate);
         //console.log(date,cellDate);
         if(date.valueOf() == cellDate.valueOf()){
           console.log("adding task",task);
-          let card = document.createElement('p');
+          let card = document.createElement('div');
           card.innerHTML=task.desc;
           if(task.status == "completed"){
             card.style.textDecoration="line-through";
@@ -91,4 +80,11 @@ function populateCalendar(taskList){
       }
     }
   }
+}
+function zeroTime(date){
+  date.setHours(0);
+  date.setMinutes(0);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+  return date;
 }
