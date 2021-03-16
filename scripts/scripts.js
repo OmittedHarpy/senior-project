@@ -198,9 +198,12 @@ function constructEditForm(){
   editForm.classList.add("hidden");
   const descField = createElement('input',"descField");
   descField.type = 'text';
+  const dateField = createElement('input',"dateField");
+  dateField.type = 'date';
   const saveBtn = constructSaveBtn();
   const cancelBtn = constructCancelBtn();
   editForm.append(descField,saveBtn,cancelBtn);
+  editForm.insertBefore(dateField,cancelBtn);
   return editForm;
 }
 function constructSaveBtn(){
@@ -281,7 +284,9 @@ function editTask(ev){
   let taskElement = getRoot(ev.target);
   let taskDesc = taskElement.querySelector('.desc').innerHTML;
   let descField = taskElement.querySelector('.descField');
+  let dateField = taskElement.querySelector('.dateField');
   descField.value = taskDesc;
+  // dateField.value =
   showEditView(taskElement);
 
 }
@@ -291,9 +296,12 @@ function saveEdit(ev){
   let taskDesc = taskElement.querySelector('.desc');
   let descField = taskElement.querySelector('.descField');
   taskDesc.innerHTML = descField.value;
+  let dateField = taskElement.querySelector('.dateField');
   let taskID = taskFromDiv(taskElement);
   let task = getTaskFromID(taskID);
   task.desc = descField.value;
+  task.date = dateField.value;
+  // addtoDateSection(task);
   storeObj(obj);
   hideEditView(taskElement);
 }

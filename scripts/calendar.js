@@ -37,12 +37,28 @@ function constructCalendar(){
     let calCell= document.createElement('div');
     calCell.classList.add("cal-cell");
     calendar.append(calCell);
+    //calCell=checkTodayCell(currentDate,calTraverse,calCell);
+    //console.log(currentDate,calTraverse);
+    if(zeroTime(currentDate).valueOf() === zeroTime(calTraverse).valueOf()){
+      //console.log("today's date");
+      calCell.classList.add("today");
+    }
     let dayOfMonth = document.createElement('p');
     dayOfMonth.innerHTML = calTraverse.getDate();
     calCell.dataset.date = calTraverse;
     calTraverse.setDate(calTraverse.getDate()+1);
     calCell.append(dayOfMonth);
   }
+}
+function checkTodayCell(currDate,cellDate,cell){
+  this.cellDate=cellDate;
+  console.log(currDate,this.cellDate);
+  if(zeroTime(currDate) === zeroTime(this.cellDate)){
+    console.log("today's date");
+    cell.classList.add("today");
+
+  }
+  return cell;
 }
 function constructDayOfWeekHeader(){
   let calendar = document.querySelector(".calendar");
