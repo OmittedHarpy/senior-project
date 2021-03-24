@@ -11,15 +11,12 @@ body{
   margin: 0px;
   background-color: #f9f9f9;
 }
-footer{
-  height: 25px;
-  color: grey;
-}
+
 h1, h2, h3, h4{
   font-family: "Zilla Slab";
 }
 hr{
-  color: #acacac;
+  color: darkgrey;
   width: 100%;
 }
 p,span{
@@ -102,12 +99,9 @@ section{
   overflow-y: auto;
 }
 .menu{
-  width: 30%;
-  /* margin: 20px;
-  margin-top: 15px; */
+  width: 385px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
   padding: 15px 20px;
-  /* border-radius: 5px; */
   background-color: white;
 }
 button{
@@ -153,10 +147,10 @@ label{
   font-family: Raleway;
   font-size: small;
 }
-input[type=text]::placeholder{
+/* input[type=text]::placeholder{
   color: #6f6f6f;
   opacity: 1;
-}
+} */
 input[type=text]{
   padding: 5px;
 }
@@ -164,7 +158,7 @@ input[type=text]{
   width: 79.75%;
 }
 input[type=date]{
-  font-family: sans-serif;
+  font-family: Raleway;
 }
 .editForm{
   /* margin: 0 5px; */
@@ -175,6 +169,14 @@ input[type=date]{
   border: none;
   border-bottom: 1.5px solid grey;
   border-radius: 3px;
+  outline: 0px solid transparent;
+}
+.editForm input[type=date]{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1.5px solid grey;
+  border-radius: 3px;
+  outline: 0px solid transparent;
 }
 
 .editForm :is(button,input,select){
@@ -212,7 +214,7 @@ pre {
 
 a{
   font-family: Raleway;
-  color: #797979;
+  color: grey;
 }
 .navbar{
   /* min-height: 30px; */
@@ -221,7 +223,7 @@ a{
   /* box-shadow:
   0 4px 8px 0 rgba(0, 0, 0, 0.2);
    0 6px 10px 0 rgba(0, 0, 0, 0.09); */
-  border-bottom: 1px solid #c8c8c8;
+  border-bottom: 1px solid #d5d5d5;
 }
 /* .navbar a{
   margin: 0 5px;
@@ -233,11 +235,28 @@ a{
   float: left;
 }
 .navbar div.active{
-  background-color: #e8e8e8;
+  background-color: #ececec;
   /* color: white; */
 }
 .navbar .active a{
   /* background-color: orangered; */
   color: #4a4a4a;
   font-weight: bold;
+}
+/* [contenteditable]{
+  outline: 0px solid transparent;
+} */
+.mini-cal{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1.5px solid grey;
+}
+.mini-cal div{
+  /* background-color: silver;
+  border-radius: 50%; */
+}
+.mini-cal p{
+  text-align: center;
+  padding: 0;
+  margin: 8px 0;
 }

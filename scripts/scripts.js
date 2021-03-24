@@ -25,7 +25,7 @@ else{
 }
 localStorage.setItem('idCount',taskID);
 populateSection(obj);
-
+constructMiniCal();
 
 function populateSection(obj){
   const tasks = obj['tasks'];
@@ -357,4 +357,22 @@ function Task(desc,date,id,status){
   this.date=date;
   this.id=id;
   this.status=status;
+}
+function constructMiniCal(){
+  let miniCal = document.querySelector('.mini-cal');
+  let currentDate = new Date();
+  let monthStart = new Date();
+  monthStart.setDate(1);
+  // monthStart.setMonth(4);
+  let weekStart = new Date();
+  weekStart.setDate(monthStart.getDate()-monthStart.getDay());
+  let dateTraverse = weekStart;
+  for(let i = 0; i<(7*5);i++){
+    let cell = document.createElement('div');
+    let day = document.createElement('p');
+    day.innerHTML=dateTraverse.getDate();
+    miniCal.append(cell);
+    cell.append(day);
+    dateTraverse.setDate(dateTraverse.getDate()+1);
+  }
 }

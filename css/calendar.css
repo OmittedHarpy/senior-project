@@ -1,5 +1,5 @@
 .calendar-section{
-  width: 75%;
+  width: 960px;
   margin: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
   background-color: white;
@@ -47,6 +47,7 @@
   padding: 5px 10px;
   max-height: 60px;
   overflow: clip;
+  background-color: white;
 }
 .cal-cell-header{
   background-color: orangered;
