@@ -133,7 +133,7 @@ function insertDatesInOrder(dateSection){
       }else if(len == 2){
         tasklist.insertBefore(dateSection, dateSectionList[1]);
       }else{
-        for(let i = len-1; i>1; i--){
+        for(let i = len-1; i>0; i--){
           if(dateSectionList[i].dataset.date>dateSection.dataset.date
             && dateSection.dataset.date>dateSectionList[i-1].dataset.date){
             tasklist.insertBefore(dateSection, dateSectionList[i]);
@@ -238,7 +238,7 @@ function completeTask(ev){
 }
 function changeState(ev,state){
   const tasks = obj["tasks"];
-  var card = getRoot(ev.target);
+  var card = getRoot(ev.target,"task");
   card.classList.add(state);
   var idNum = taskFromDiv(card);
   let task = getTaskFromID(idNum);
@@ -246,8 +246,8 @@ function changeState(ev,state){
   storeObj(obj);
 }
 
-function getRoot(element){
-  while(!element.classList.contains("task")){
+function getRoot(element,className){
+  while(!element.classList.contains(className)){
     element = element.parentElement;
   }
   return element;
@@ -281,18 +281,19 @@ function toggleCompletedTasks(){
 
 function editTask(ev){
   ev.preventDefault();
-  let taskElement = getRoot(ev.target);
+  let taskElement = getRoot(ev.target,"task");
   let taskDesc = taskElement.querySelector('.desc').innerHTML;
   let descField = taskElement.querySelector('.descField');
   let dateField = taskElement.querySelector('.dateField');
   descField.value = taskDesc;
-  // dateField.value =
+  let dateSection = getRoot(taskElement,"dateSection");
+  dateField.value = dateSection.dataset.date;
   showEditView(taskElement);
 
 }
 function saveEdit(ev){
   ev.preventDefault();
-  let taskElement = getRoot(ev.target);
+  let taskElement = getRoot(ev.target,"task");
   let taskDesc = taskElement.querySelector('.desc');
   let descField = taskElement.querySelector('.descField');
   taskDesc.innerHTML = descField.value;
@@ -302,12 +303,19 @@ function saveEdit(ev){
   task.desc = descField.value;
   task.date = dateField.value;
   // addtoDateSection(task);
+
+
   storeObj(obj);
+  let taskList = document.querySelector('.tasklist');
+  while (taskList.firstChild){
+    taskList.removeChild(taskList.firstChild);
+  }
+  populateSection(obj);
   hideEditView(taskElement);
 }
 function cancelEdit(ev){
   ev.preventDefault();
-  let taskElement = getRoot(ev.target);
+  let taskElement = getRoot(ev.target,"task");
   hideEditView(taskElement);
 }
 function showEditView(element){
