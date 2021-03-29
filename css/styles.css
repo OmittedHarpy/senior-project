@@ -110,6 +110,10 @@ button{
   border: none;
   cursor: pointer;
 }
+button:disabled{
+  background-color: #d14500 !important;
+  color: #d5d5d5;
+}
 button:not(.tasklist button) {
   background-color: orangered;
   height: 25px;
@@ -251,12 +255,40 @@ a{
   grid-template-columns: repeat(7, 1fr);
   border: 1.5px solid grey;
 }
-.mini-cal div{
-  /* background-color: silver;
-  border-radius: 50%; */
+.mini-cal-cell{
+  /* background-color: orangered;
+  opacity: 0.0; */
+  /* border-radius: 50%; */
 }
 .mini-cal p{
   text-align: center;
   padding: 0;
   margin: 8px 0;
+  margin-bottom: 0;
+}
+.mini-cal .today{
+  border: 1.5px solid grey;
+}
+.task-count{
+  background-color: orangered;
+  opacity: 0.0;
+  height: 10px;
+}
+.next{
+  float: right;
+}
+.prev, .next{
+  border-radius: 50%;
+}
+.month-heading{
+  font-family: "Zilla Slab";
+  font-size: 20px;
+  width: 84%;
+  text-align: center;
+  padding: 0;
+  margin: 5px 0;
+  display: inline-block;
+}
+.other-month{
+  color: grey;
 }

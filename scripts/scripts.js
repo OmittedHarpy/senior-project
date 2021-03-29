@@ -1,4 +1,4 @@
-
+import * as taskFunctions from './task-functions.js'
 const section = document.querySelector('section');
 const tasklist = document.querySelector('.tasklist');
 const postSubmit = document.querySelector('.postSubmit');
@@ -25,10 +25,18 @@ else{
 }
 localStorage.setItem('idCount',taskID);
 populateSection(obj);
-constructMiniCal();
+let miniCal = new miniCalendar();
+miniCal.constructMiniCal(miniCal.monthDisplayed);
+// miniCal.miniCalOpacity(obj);
 
 function populateSection(obj){
   const tasks = obj['tasks'];
+  console.log("Deleted Tasks:");
+  for(let i = 0; i<tasks.length; i++){
+    if(tasks[i].status=="deleted"){
+      console.log(tasks[i]);
+    }
+  }
   for(let i = 0; i<tasks.length; i++){
     if(tasks[i].status!="deleted"){
 
@@ -63,6 +71,7 @@ function addTask(ev){
   storeObj(obj);
   obj = JSON.parse(text);
   addtoDateSection(newTask);
+  updateTaskList();
   taskID++;
   localStorage.setItem('idCount',taskID);
   nameField.value = '';
@@ -230,11 +239,13 @@ function constructEditBtn(){
 function deleteTask(ev){
   ev.preventDefault();
   changeState(ev,"deleted");
+  updateTaskList();
 }
 function completeTask(ev){
   ev.preventDefault();
   this.textContent="\u2713";
   changeState(ev,"completed");
+  updateTaskList();
 }
 function changeState(ev,state){
   const tasks = obj["tasks"];
@@ -302,15 +313,8 @@ function saveEdit(ev){
   let task = getTaskFromID(taskID);
   task.desc = descField.value;
   task.date = dateField.value;
-  // addtoDateSection(task);
-
-
   storeObj(obj);
-  let taskList = document.querySelector('.tasklist');
-  while (taskList.firstChild){
-    taskList.removeChild(taskList.firstChild);
-  }
-  populateSection(obj);
+  updateTaskList();
   hideEditView(taskElement);
 }
 function cancelEdit(ev){
@@ -330,6 +334,13 @@ function hideEditView(element){
   const editForm = element.querySelector(".editForm");
   taskContent.classList.remove("hidden");
   editForm.classList.add("hidden");
+}
+function updateTaskList(){
+  let taskList = document.querySelector('.tasklist');
+  while (taskList.firstChild){
+    taskList.removeChild(taskList.firstChild);
+  }
+  populateSection(obj);
 }
 function divFromTask(task){
   console.log(task);
@@ -366,21 +377,95 @@ function Task(desc,date,id,status){
   this.id=id;
   this.status=status;
 }
-function constructMiniCal(){
+function miniCalendar(){
   let miniCal = document.querySelector('.mini-cal');
+  let prevBtn = document.querySelector('.prev');
+  let nextBtn = document.querySelector('.next');
+  prevBtn.addEventListener('click',prevMonth);
+  nextBtn.addEventListener('click',nextMonth);
   let currentDate = new Date();
-  let monthStart = new Date();
-  monthStart.setDate(1);
-  // monthStart.setMonth(4);
-  let weekStart = new Date();
-  weekStart.setDate(monthStart.getDate()-monthStart.getDay());
-  let dateTraverse = weekStart;
-  for(let i = 0; i<(7*5);i++){
-    let cell = document.createElement('div');
-    let day = document.createElement('p');
-    day.innerHTML=dateTraverse.getDate();
-    miniCal.append(cell);
-    cell.append(day);
-    dateTraverse.setDate(dateTraverse.getDate()+1);
+  // let displayDate = new Date();
+  let monthDisplayed = currentDate.getMonth();
+  // displayDate.setMonth(monthDisplayed);
+  // displayDate.setYear(currentDate.getYear());
+  let months =["January","Febuary","March","April",
+               "May","June","July","August",
+               "September","October","November","December"];
+
+
+  let constructMiniCal = function(monthNum){
+    let monthHeading = document.querySelector('.month-heading');
+
+    let monthStart = new Date();
+    monthStart.setDate(1);
+    monthStart.setMonth(monthNum);
+    monthHeading.innerHTML = months[monthStart.getMonth()]+" "+monthStart.getFullYear();
+    let weekStart = monthStart;
+    weekStart.setDate(monthStart.getDate()-monthStart.getDay());
+    let dateTraverse = weekStart;
+    for(let i = 0; i<(7*6);i++){
+      let cell = document.createElement('div');
+      cell.classList.add("mini-cal-cell");
+      if(taskFunctions.zeroTime(currentDate).valueOf() === taskFunctions.zeroTime(dateTraverse).valueOf()){
+        //console.log("today's date");
+        cell.classList.add("today");
+      }
+      if(dateTraverse.getMonth()!=monthDisplayed){
+        cell.classList.add("other-month");
+      }
+      let day = document.createElement('p');
+      let taskCount = createElement('div',"task-count");
+      day.innerHTML=dateTraverse.getDate();
+      miniCal.append(cell);
+      cell.append(day,taskCount);
+      cell.dataset.date = dateTraverse;
+      dateTraverse.setDate(dateTraverse.getDate()+1);
+    }
+    miniCalOpacity(obj);
+  }
+  let miniCalOpacity=function(obj){
+    let tasks = obj['tasks'];
+    let cellList = document.querySelectorAll('.mini-cal-cell');
+    for(let cell of cellList){
+      for(let task of tasks){
+        if(task.status!="deleted"){
+          let date = new Date(task.date+' 00:00:00');
+          date = taskFunctions.zeroTime(date);
+          let cellDate = new Date(cell.dataset.date);
+          cellDate=taskFunctions.zeroTime(cellDate);
+          if(date.valueOf() == cellDate.valueOf()){
+            let taskCount = cell.querySelector('.task-count');
+            let opacity = taskCount.style.opacity;
+            taskCount.style.opacity = opacity ? (parseFloat(opacity)+0.2) : 0.2;
+          }
+        }
+      }
+    }
+
+  }
+  function nextMonth(ev){
+    ev.preventDefault();
+    let miniCal = document.querySelector('.mini-cal');
+    let miniCalCells = miniCal.querySelectorAll('.mini-cal-cell');
+    for(let i = 0; i < miniCalCells.length; i++){
+      miniCalCells[i].remove();
+    }
+    monthDisplayed+=1;
+    constructMiniCal(monthDisplayed);
+  }
+  function prevMonth(ev){
+    ev.preventDefault();
+    let miniCal = document.querySelector('.mini-cal');
+    let miniCalCells = miniCal.querySelectorAll('.mini-cal-cell');
+    for(let i = 0; i < miniCalCells.length; i++){
+      miniCalCells[i].remove();
+    }
+    monthDisplayed-=1;
+    constructMiniCal(monthDisplayed);
+  }
+  return{
+    constructMiniCal: constructMiniCal,
+    // miniCalOpacity: miniCalOpacity,
+    monthDisplayed: monthDisplayed
   }
 }
