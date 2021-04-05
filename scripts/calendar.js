@@ -1,3 +1,4 @@
+import * as taskFunctions from './task-functions.js'
 let calendarSection = document.querySelector(".calendar-section");
 let init = function(e){
   let section = document.querySelector("section");
@@ -37,9 +38,8 @@ function constructCalendar(){
     let calCell= document.createElement('div');
     calCell.classList.add("cal-cell");
     calendar.append(calCell);
-    //calCell=checkTodayCell(currentDate,calTraverse,calCell);
     //console.log(currentDate,calTraverse);
-    if(zeroTime(currentDate).valueOf() === zeroTime(calTraverse).valueOf()){
+    if(taskFunctions.zeroTime(currentDate).valueOf() === taskFunctions.zeroTime(calTraverse).valueOf()){
       //console.log("today's date");
       calCell.classList.add("today");
     }
@@ -48,18 +48,11 @@ function constructCalendar(){
     calCell.dataset.date = calTraverse;
     calTraverse.setDate(calTraverse.getDate()+1);
     calCell.append(dayOfMonth);
+    calCell.addEventListener('drop',drop);
+    calCell.addEventListener('dragover',allowDrop);
   }
 }
-function checkTodayCell(currDate,cellDate,cell){
-  this.cellDate=cellDate;
-  console.log(currDate,this.cellDate);
-  if(zeroTime(currDate) === zeroTime(this.cellDate)){
-    console.log("today's date");
-    cell.classList.add("today");
 
-  }
-  return cell;
-}
 function constructDayOfWeekHeader(){
   let calendar = document.querySelector(".calendar");
   let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -79,9 +72,9 @@ function populateCalendar(taskList){
     for(let task of taskList){
       if(task.status != "deleted"){
         let date = new Date(task.date+' 00:00:00');
-        date = zeroTime(date);
+        date = taskFunctions.zeroTime(date);
         let cellDate = new Date(calCell.dataset.date);
-        cellDate=zeroTime(cellDate);
+        cellDate=taskFunctions.zeroTime(cellDate);
         //console.log(date,cellDate);
         if(date.valueOf() == cellDate.valueOf()){
           console.log("adding task",task);
@@ -92,15 +85,25 @@ function populateCalendar(taskList){
             card.style.color="darkgrey";
           }
           calCell.append(card);
+          card.id = task.id;
+          card.draggable = true;
+          card.addEventListener('dragstart', drag);
         }
       }
     }
   }
 }
-function zeroTime(date){
-  date.setHours(0);
-  date.setMinutes(0);
-  date.setSeconds(0);
-  date.setMilliseconds(0);
-  return date;
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+  console.log(ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
 }
