@@ -19,12 +19,12 @@ hr{
   color: darkgrey;
   width: 100%;
 }
-p,span{
+span{
   font-family: Raleway;
   padding-left: 10px;
 }
-span{
-  /* padding: 16px 0px; */
+p{
+  font-family: Raleway;
 }
 .task{
   padding: 8px 0px;
@@ -229,10 +229,6 @@ a{
    0 6px 10px 0 rgba(0, 0, 0, 0.09); */
   border-bottom: 1px solid #d5d5d5;
 }
-/* .navbar a{
-  margin: 0 5px;
-  padding: 5px 0;
-} */
 .navbar div{
   padding: 7px;
   display: inline-block;
@@ -253,18 +249,25 @@ a{
 .mini-cal{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  border: 1.5px solid grey;
+  border: 1.5px solid darkgrey;
+  border-radius: 2px;
 }
-.mini-cal-cell{
+.dayOfWeek{
+  background-color: #ececec;
+  border-bottom: 1.5px solid darkgrey;
+  margin: 0;
+  padding: 8px 0;
+  font-weight: bold;
+}
+.mini-cal-cell p{
   /* background-color: orangered;
   opacity: 0.0; */
   /* border-radius: 50%; */
+  padding: 0;
+  margin: 8px 0;
 }
 .mini-cal p{
   text-align: center;
-  padding: 0;
-  margin: 8px 0;
-  margin-bottom: 0;
 }
 .mini-cal .today{
   border: 1.5px solid grey;

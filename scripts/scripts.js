@@ -392,7 +392,6 @@ function miniCalendar(){
                "May","June","July","August",
                "September","October","November","December"];
 
-
   let constructMiniCal = function(monthNum){
     let monthHeading = document.querySelector('.month-heading');
 
@@ -414,10 +413,10 @@ function miniCalendar(){
         cell.classList.add("other-month");
       }
       let day = document.createElement('p');
-      let taskCount = createElement('div',"task-count");
+      // let taskCount = createElement('div',"task-count");
       day.innerHTML=dateTraverse.getDate();
       miniCal.append(cell);
-      cell.append(day,taskCount);
+      cell.append(day);
       cell.dataset.date = dateTraverse;
       dateTraverse.setDate(dateTraverse.getDate()+1);
     }
@@ -427,6 +426,7 @@ function miniCalendar(){
     let tasks = obj['tasks'];
     let cellList = document.querySelectorAll('.mini-cal-cell');
     for(let cell of cellList){
+      let taskCount = 0;
       for(let task of tasks){
         if(task.status!="deleted"){
           let date = new Date(task.date+' 00:00:00');
@@ -434,9 +434,8 @@ function miniCalendar(){
           let cellDate = new Date(cell.dataset.date);
           cellDate=taskFunctions.zeroTime(cellDate);
           if(date.valueOf() == cellDate.valueOf()){
-            let taskCount = cell.querySelector('.task-count');
-            let opacity = taskCount.style.opacity;
-            taskCount.style.opacity = opacity ? (parseFloat(opacity)+0.2) : 0.2;
+            taskCount++;
+            cell.style.backgroundColor = "rgba(255,69,0,"+(taskCount/5)+")";
           }
         }
       }
