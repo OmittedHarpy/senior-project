@@ -1,13 +1,18 @@
 import * as taskFunctions from './task-functions.js'
 let calendarSection = document.querySelector(".calendar-section");
+let obj, text;
+text = localStorage.getItem("testJSON");
+obj = JSON.parse(text);
+console.log(obj);
+let taskList = obj['tasks'];
 let init = function(e){
   let section = document.querySelector("section");
 
-  let obj, text;
-  text = localStorage.getItem("testJSON");
-  obj = JSON.parse(text);
-  console.log(obj);
-  let taskList = obj['tasks'];
+  // let obj, text;
+  // text = localStorage.getItem("testJSON");
+  // obj = JSON.parse(text);
+  // console.log(obj);
+  // let taskList = obj['tasks'];
   constructMonthHeading();
   constructCalendar();
   populateCalendar(taskList);
@@ -44,6 +49,7 @@ function constructCalendar(){
       calCell.classList.add("today");
     }
     let dayOfMonth = document.createElement('p');
+    dayOfMonth.classList.add('day-of-month');
     dayOfMonth.innerHTML = calTraverse.getDate();
     calCell.dataset.date = calTraverse;
     calTraverse.setDate(calTraverse.getDate()+1);
@@ -71,7 +77,13 @@ function populateCalendar(taskList){
   for(let calCell of calCellList){
     for(let task of taskList){
       if(task.status != "deleted"){
-        let date = new Date(task.date+' 00:00:00');
+        let date;
+        if(task.hasOwnProperty('plannedDate')){
+          date = new Date(task.plannedDate);
+          console.log("planned Date");
+        }else{
+          date = new Date(task.date+' 00:00:00');
+        }
         date = taskFunctions.zeroTime(date);
         let cellDate = new Date(calCell.dataset.date);
         cellDate=taskFunctions.zeroTime(cellDate);
@@ -79,13 +91,24 @@ function populateCalendar(taskList){
         if(date.valueOf() == cellDate.valueOf()){
           console.log("adding task",task);
           let card = document.createElement('div');
-          card.innerHTML=task.desc;
+          card.classList.add('task-card');
+          let desc = document.createElement('p');
+          desc.classList.add('desc');
+          desc.innerHTML=task.desc;
+
+          if(task.hasOwnProperty('plannedDate')){
+            let dueDate = document.createElement('p');
+            dueDate.classList.add('due-date');
+            dueDate.innerHTML = "Due: "+task.date;
+            card.append(dueDate);
+          }
+          card.append(desc);
           if(task.status == "completed"){
             card.style.textDecoration="line-through";
             card.style.color="darkgrey";
           }
           calCell.append(card);
-          card.id = task.id;
+          card.id = "task"+task.id;
           card.draggable = true;
           card.addEventListener('dragstart', drag);
         }
@@ -105,5 +128,18 @@ function drag(ev) {
 function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+  let element = document.getElementById(data);
+  ev.target.appendChild(element);
+  let idNum = taskFunctions.taskFromDiv(element);
+  let task = taskFunctions.getTaskFromID(idNum);
+  console.log(ev.target);
+  console.log(task);
+  task.plannedDate = ev.target.dataset.date;
+  console.log(task);
+  // console.log(obj);
+  // let obj, text;
+  // text = localStorage.getItem("testJSON");
+  // obj = JSON.parse(text);
+  taskFunctions.storeObj();
+  // console.log(obj);
 }
