@@ -246,6 +246,9 @@ a{
 /* [contenteditable]{
   outline: 0px solid transparent;
 } */
+ summary{
+  font-family: Raleway;
+ }
 .mini-cal{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -295,4 +298,44 @@ a{
 }
 .other-month{
   color: grey;
+}
+
+@media only screen and (max-width: 600px){
+
+  .outer_row{
+    flex-flow: column-reverse;
+  }
+  .menu{
+    z-index: 2;
+  }
+  .main{
+    width: 95%;
+    overflow-y: scroll;
+    padding: 10px;
+  }
+  .tasklist{
+    overflow-y: unset;
+  }
+  h2{
+    margin: 0px 10px;
+  }
+  .editForm{
+    padding-left: 20px;
+  }
+
+  .editForm input[type=text]{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid grey;
+    border-radius: 3px;
+    outline: 0px solid transparent;
+    width: 150px;
+  }
+  .editForm input[type=date]{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid grey;
+    border-radius: 3px;
+    outline: 0px solid transparent;
+  }
 }
