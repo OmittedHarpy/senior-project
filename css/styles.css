@@ -282,6 +282,7 @@ a{
 }
 .prev, .next{
   border-radius: 50%;
+  width: 25px;
 }
 .month-heading{
   font-family: "Zilla Slab";
