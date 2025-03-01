@@ -338,4 +338,23 @@ a{
     border-radius: 3px;
     outline: 0px solid transparent;
   }
+  .action_bar{
+    visibility: visible;
+    
+  }
+  .edit, .close, .check{
+    font-size: 16px;
+  }
+  .fa-sm{
+    font-size: unset;
+  }
+  .save{
+    width: 59.4833px;
+  }
+  .editForm button{
+    outline: 2px solid white;
+  }
+  button{
+    font-size: 16px;
+  }
 }
