@@ -20,6 +20,7 @@
   grid-template-rows: auto 1fr 1fr 1fr;
   grid-gap: 2px;
   /* margin: 15px; */
+  overflow-y: scroll;
 }
 .cal-cell{
   float: left;

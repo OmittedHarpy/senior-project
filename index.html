@@ -18,7 +18,9 @@
     </div>
     <section class="outer_row">
       <div class="menu">
-        <fieldset>
+        <details>
+          <summary>Add</summary>
+          <fieldset>
           <form name="postForm" autocomplete="off">
              <label for="name"><pre>Task:         </pre></label>
              <input type="text" id="name" class="nameField" placeholder="New Task">
@@ -37,25 +39,26 @@
 
             <button id="postSubmit" class="postSubmit">Add</button>
           </form>
-        </fieldset>
+          </fieldset>
+        </details>
         <button class="hideCompleted">Hide completed</button>
         <hr>
         <details>
-          <summary>Calendar View</summary>
-        <div class="mini-cal-header">
-          <button class="prev"><i class="fas fa-chevron-left"></i></button>
-          <span class="month-heading"></span>
-          <button class="next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="mini-cal">
-          <p class="dayOfWeek">S</p>
-          <p class="dayOfWeek">M</p>
-          <p class="dayOfWeek">T</p>
-          <p class="dayOfWeek">W</p>
-          <p class="dayOfWeek">H</p>
-          <p class="dayOfWeek">F</p>
-          <p class="dayOfWeek">S</p>
-        </div>
+            <summary>Calendar View</summary>
+          <div class="mini-cal-header">
+            <button class="prev"><i class="fas fa-chevron-left"></i></button>
+            <span class="month-heading"></span>
+            <button class="next"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="mini-cal">
+            <p class="dayOfWeek">S</p>
+            <p class="dayOfWeek">M</p>
+            <p class="dayOfWeek">T</p>
+            <p class="dayOfWeek">W</p>
+            <p class="dayOfWeek">H</p>
+            <p class="dayOfWeek">F</p>
+            <p class="dayOfWeek">S</p>
+          </div>
         </details>
       </div>
       <div class="main">
