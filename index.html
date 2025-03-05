@@ -8,58 +8,62 @@
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/b0c82979b3.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/bff80605d3.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="outer_column">
     <div class="navbar">
+      <div class="slideoutButtonWrapper"><button class="slideoutButton"><i class="fas fa-solid fa-bars fa-lg"></i></button></div>
       <div class="active"><a href="/index.html">Home</a></div>
       <div><a href="html/calendar.html">Calendar</a></div>
     </div>
     <section class="outer_row">
       <div class="menu">
-        <details>
-          <summary>Add</summary>
-          <fieldset>
-          <form name="postForm" autocomplete="off">
-             <label for="name"><pre>Task:         </pre></label>
-             <input type="text" id="name" class="nameField" placeholder="New Task">
-             <br>
-             <label for="date">Due Date:</label>
-             <input type="date" id="date" class="dateField" placeholder="Due Date">
-             <br>
-             <label for="timeEstimate">Estimated Time:</label>
-             <select id="timeEstimate" disabled>
-               <option>----</option>
-               <option>< 1 hour</option>
-               <option>several hours</option>
-               <option>all day</option>
-               <option>several days</option>
-             </select>
+        <div class="menuWrapper">
+          <details id="addTaskFormDetails">
+            <summary>Add</summary>
+            <fieldset>
+            <form name="postForm" autocomplete="off">
+              <label for="name"><pre>Task:         </pre></label>
+              <input type="text" id="name" class="nameField" placeholder="New Task">
+              <br>
+              <label for="date">Due Date:</label>
+              <input type="date" id="date" class="dateField" placeholder="Due Date">
+              <br>
+              <label for="timeEstimate">Estimated Time:</label>
+              <select id="timeEstimate" disabled>
+                <option>----</option>
+                <option>< 1 hour</option>
+                <option>several hours</option>
+                <option>all day</option>
+                <option>several days</option>
+              </select>
 
-            <button id="postSubmit" class="postSubmit">Add</button>
-          </form>
-          </fieldset>
-        </details>
-        <button class="hideCompleted">Hide completed</button>
-        <hr>
-        <details>
-            <summary>Calendar View</summary>
-          <div class="mini-cal-header">
-            <button class="prev"><i class="fas fa-chevron-left"></i></button>
-            <span class="month-heading"></span>
-            <button class="next"><i class="fas fa-chevron-right"></i></button>
-          </div>
-          <div class="mini-cal">
-            <p class="dayOfWeek">S</p>
-            <p class="dayOfWeek">M</p>
-            <p class="dayOfWeek">T</p>
-            <p class="dayOfWeek">W</p>
-            <p class="dayOfWeek">H</p>
-            <p class="dayOfWeek">F</p>
-            <p class="dayOfWeek">S</p>
-          </div>
-        </details>
+              <button id="postSubmit" class="postSubmit">Add</button>
+            </form>
+            </fieldset>
+          </details>
+          <button class="hideCompleted">Hide completed</button>
+          <hr>
+          <details id="mini-calDetails">
+              <summary>Calendar View</summary>
+            <div class="mini-cal-header">
+              <button class="prev"><i class="fas fa-chevron-left"></i></button>
+              <span class="month-heading"></span>
+              <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="mini-cal">
+              <p class="dayOfWeek">S</p>
+              <p class="dayOfWeek">M</p>
+              <p class="dayOfWeek">T</p>
+              <p class="dayOfWeek">W</p>
+              <p class="dayOfWeek">H</p>
+              <p class="dayOfWeek">F</p>
+              <p class="dayOfWeek">S</p>
+            </div>
+          </details>
+        </div>  
       </div>
       <div class="main">
         <h2>To Do</h2>

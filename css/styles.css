@@ -103,6 +103,7 @@ section{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
   padding: 15px 20px;
   background-color: white;
+  visibility: visible;
 }
 .formWrapper{
   visibility: hidden;
@@ -117,7 +118,7 @@ button:disabled{
   background-color: #d14500 !important;
   color: #d5d5d5;
 }
-button:not(.tasklist button) {
+button:not(.tasklist button, .slideoutButton) {
   background-color: orangered;
   height: 25px;
   margin: 5px 0;
@@ -251,6 +252,8 @@ a{
 } */
  summary{
   font-family: Raleway;
+  visibility: hidden;
+  height: 0px;
  }
 .mini-cal{
   display: grid;
@@ -303,6 +306,15 @@ a{
   color: grey;
 }
 
+.sidebar-closed{
+  width: 0px !important;
+  padding: 0px !important;
+  visibility: hidden !important;
+}
+.full-width-main{
+  width: 80% !important;
+}
+
 @media only screen and (max-width: 600px){
 
   .outer_row{
@@ -313,6 +325,10 @@ a{
     border-top: 1.5px solid lightgrey;
     min-width: 380px;
     width: 100%;
+  }
+  .menuWrapper{
+    max-width: 400px;
+    margin: auto;
   }
   .main{
     width: 95%;
@@ -365,6 +381,10 @@ a{
   .hideCompleted,.postSubmit{
     font-size: 16px;
   }
+  summary{
+    visibility: visible;
+    height: auto;
+  }
   /* .month-heading{
     max-width: 84%;
     max-width: 260px;
@@ -372,4 +392,41 @@ a{
     margin-right: auto;
     width: fit-content;
   } */
+   .slideoutButtonWrapper{
+    visibility: collapse;
+    width: 0px;
+   }
+}
+
+@media only screen and (max-height: 590px){
+  .menu{
+    overflow-y: scroll;
+    z-index: 2;
+  }
+  h2{
+    margin: 0px 10px;
+  }
+  .dateSection{
+    margin: 20px 0px;
+  }
+}
+@media only screen and (max-width:900px){
+  .navbar{
+    padding-left: 0px;
+  }
+}
+@media only screen and (min-width:900px){
+  .slideoutButtonWrapper{
+    visibility: collapse;
+    width: 0px;
+   }
+}
+.slideoutButton{
+  margin: 0px;
+  height: 34px;
+  width: 34px;
+  background-color: lightgrey;
+}
+.slideoutButtonWrapper{
+  padding: 0px !important;
 }

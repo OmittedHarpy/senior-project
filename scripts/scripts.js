@@ -5,6 +5,7 @@ const postSubmit = document.querySelector('.postSubmit');
 const nameField = document.querySelector('.nameField');
 const dateField = document.querySelector('.dateField');
 const filterCompleted = document.querySelector('.hideCompleted');
+const slideoutButton = document.querySelector('.slideoutButton');
 var myObj, myJSON, text, obj;
 var taskID;
 
@@ -28,6 +29,11 @@ populateSection(obj);
 let miniCal = new miniCalendar();
 miniCal.constructMiniCal(miniCal.monthDisplayed);
 // miniCal.miniCalOpacity(obj);
+
+if(screen.width>600){ //start the sidebar elements open if on a large screen - pc/tablet
+  document.getElementById("addTaskFormDetails").open = true;
+  document.getElementById("mini-calDetails").open = true;
+}
 
 function populateSection(obj){
   const tasks = obj['tasks'];
@@ -57,6 +63,7 @@ function populateSection(obj){
   hideCompletedSections();
   postSubmit.addEventListener('click', addTask);
   filterCompleted.addEventListener('click', filterCompletedTasks);
+  slideoutButton.addEventListener('click',toggleSlideout);
 }
 
 function addTask(ev){
@@ -289,6 +296,22 @@ function toggleCompletedTasks(){
     }
   }
 }
+var slideoutOpen = true; //forgive me
+function toggleSlideout(ev){
+  ev.preventDefault();
+  var sidebar = document.querySelector('.menu');
+  var main = document.querySelector('.main');
+  
+  if (slideoutOpen){
+    sidebar.classList.add("sidebar-closed");
+    main.classList.add("full-width-main");
+  }else {
+    sidebar.classList.remove("sidebar-closed");
+    main.classList.remove("full-width-main");
+  }  
+  slideoutOpen = !slideoutOpen;
+
+}
 
 function editTask(ev){
   ev.preventDefault();
@@ -377,6 +400,9 @@ function Task(desc,date,id,status){
   this.id=id;
   this.status=status;
 }
+
+//ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
 function miniCalendar(){
   let miniCal = document.querySelector('.mini-cal');
   let prevBtn = document.querySelector('.prev');
