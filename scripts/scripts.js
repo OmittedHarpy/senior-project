@@ -5,7 +5,6 @@ const postSubmit = document.querySelector('.postSubmit');
 const nameField = document.querySelector('.nameField');
 const dateField = document.querySelector('.dateField');
 const filterCompleted = document.querySelector('.hideCompleted');
-const slideoutButton = document.querySelector('.slideoutButton');
 var myObj, myJSON, text, obj;
 var taskID;
 
@@ -30,10 +29,6 @@ let miniCal = new miniCalendar();
 miniCal.constructMiniCal(miniCal.monthDisplayed);
 // miniCal.miniCalOpacity(obj);
 
-if(screen.width>600){ //start the sidebar elements open if on a large screen - pc/tablet
-  document.getElementById("addTaskFormDetails").open = true;
-  document.getElementById("mini-calDetails").open = true;
-}
 
 function populateSection(obj){
   const tasks = obj['tasks'];
@@ -63,7 +58,6 @@ function populateSection(obj){
   hideCompletedSections();
   postSubmit.addEventListener('click', addTask);
   filterCompleted.addEventListener('click', filterCompletedTasks);
-  slideoutButton.addEventListener('click',toggleSlideout);
 }
 
 function addTask(ev){
@@ -173,6 +167,7 @@ function datesIsSorted(lst){
 function constructCard(task){
   const taskElement = createElement('div',"task");
   const taskContent = createElement('div',"task_content");
+  const descWrapper = createElement('div','desc-wrapper');
   const p1 = createElement('span',"desc");
   const completeBtn = constructCompleteBtn(task);
   const actionBar = createElement('span',"action_bar");
@@ -182,8 +177,9 @@ function constructCard(task){
   p1.textContent = task.desc;
   p1.addEventListener("dblclick",editTask);
   taskElement.append(taskContent);
-  taskContent.appendChild(completeBtn);
-  taskContent.appendChild(p1);
+  descWrapper.appendChild(completeBtn);
+  descWrapper.appendChild(p1);
+  taskContent.append(descWrapper);
   const editForm = constructEditForm();
   taskContent.appendChild(actionBar);
   actionBar.appendChild(editBtn);
@@ -295,22 +291,6 @@ function toggleCompletedTasks(){
       completedTasks[i].classList.remove("hidden");
     }
   }
-}
-var slideoutOpen = true; //forgive me
-function toggleSlideout(ev){
-  ev.preventDefault();
-  var sidebar = document.querySelector('.menu');
-  var main = document.querySelector('.main');
-  
-  if (slideoutOpen){
-    sidebar.classList.add("sidebar-closed");
-    main.classList.add("full-width-main");
-  }else {
-    sidebar.classList.remove("sidebar-closed");
-    main.classList.remove("full-width-main");
-  }  
-  slideoutOpen = !slideoutOpen;
-
 }
 
 function editTask(ev){

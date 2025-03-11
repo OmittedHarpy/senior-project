@@ -36,10 +36,24 @@ p{
   background: none;
   color: grey;
 }
-
+.task_content{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
 .close, .edit{
   padding: 0 4px;
   /* padding-bottom: 6px; */
+}
+.desc-wrapper{
+  display:flex;
+  align-items: flex-start;
+  max-width: 80%;
+}
+
+.desc{
+  word-wrap: break-word;
+  display: inline-block;
 }
 .action_bar{
   float: right;
@@ -58,6 +72,9 @@ p{
   /* display: none; */
   color:orangered;
   background-color: #fee;
+}
+.overdue:hover{
+  background-color:#e8d7d7;
 }
 .deleted{
   display: none;
@@ -261,6 +278,9 @@ a{
   border: 1.5px solid darkgrey;
   border-radius: 2px;
 }
+.mini-cal-header{
+  display: flex;
+}
 .dayOfWeek{
   background-color: #ececec;
   border-bottom: 1.5px solid darkgrey;
@@ -315,112 +335,6 @@ a{
   width: 80% !important;
 }
 
-@media only screen and (max-width: 600px){
-
-  .outer_row{
-    flex-flow: column-reverse;
-  }
-  .menu{
-    z-index: 2;
-    border-top: 1.5px solid lightgrey;
-    min-width: 380px;
-    width: 100%;
-  }
-  .menuWrapper{
-    max-width: 400px;
-    margin: auto;
-  }
-  .main{
-    width: 95%;
-    overflow-y: scroll;
-    padding: 10px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-  }
-  /* .tasklist{
-    overflow-y: unset;
-  } */
-  h2{
-    margin: 0px 10px;
-  }
-  .editForm{
-    padding-left: 20px;
-  }
-
-  .editForm input[type=text]{
-    background-color: transparent;
-    border: none;
-    border-bottom: 1.5px solid grey;
-    border-radius: 3px;
-    outline: 0px solid transparent;
-    width: 150px;
-  }
-  .editForm input[type=date]{
-    background-color: transparent;
-    border: none;
-    border-bottom: 1.5px solid grey;
-    border-radius: 3px;
-    outline: 0px solid transparent;
-  }
-  .action_bar{
-    visibility: visible;
-    
-  }
-  .edit, .close, .check{
-    font-size: 16px;
-  }
-  .fa-sm{
-    font-size: unset;
-  }
-  .save{
-    width: 59.4833px;
-  }
-  .editForm button{
-    outline: 2px solid white;
-  }
-  .hideCompleted,.postSubmit{
-    font-size: 16px;
-  }
-  summary{
-    visibility: visible;
-    height: auto;
-  }
-  /* .month-heading{
-    max-width: 84%;
-    max-width: 260px;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-  } */
-   .slideoutButtonWrapper{
-    visibility: collapse;
-    width: 0px;
-   }
-}
-
-@media only screen and (max-height: 590px){
-  .menu{
-    overflow-y: scroll;
-    z-index: 2;
-  }
-  h2{
-    margin: 0px 10px;
-  }
-  .dateSection{
-    margin: 20px 0px;
-  }
-}
-@media only screen and (max-width:900px){
-  .navbar{
-    padding-left: 0px;
-  }
-}
-@media only screen and (min-width:900px){
-  .slideoutButtonWrapper{
-    visibility: collapse;
-    width: 0px;
-   }
-}
 .slideoutButton{
   margin: 0px;
   height: 34px;

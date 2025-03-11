@@ -1,0 +1,128 @@
+@media only screen and (max-width: 600px){
+
+    .outer_row{
+      flex-flow: column-reverse;
+    }
+    .menu{
+      z-index: 2;
+      border-top: 1.5px solid lightgrey;
+      min-width: 380px;
+      width: 100%;
+    }
+    .menuWrapper{
+      max-width: 400px;
+      margin: auto;
+    }
+    .main{
+      width: 95%;
+      overflow-y: scroll;
+      padding: 10px;
+      padding-bottom: 0;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    /* .tasklist{
+      overflow-y: unset;
+    } */
+    h2{
+      margin: 0px 10px;
+    }
+    .editForm{
+      padding-left: 20px;
+    }
+  
+    .editForm input[type=text]{
+      background-color: transparent;
+      border: none;
+      border-bottom: 1.5px solid grey;
+      border-radius: 3px;
+      outline: 0px solid transparent;
+      width: 150px;
+    }
+    .editForm input[type=date]{
+      background-color: transparent;
+      border: none;
+      border-bottom: 1.5px solid grey;
+      border-radius: 3px;
+      outline: 0px solid transparent;
+    }
+    .action_bar{
+      visibility: visible;
+      
+    }
+    .edit, .close, .check{
+      font-size: 16px;
+    }
+    .fa-sm{
+      font-size: unset;
+    }
+    .save{
+      width: 59.4833px;
+    }
+    .editForm button{
+      outline: 2px solid white;
+    }
+    .hideCompleted,.postSubmit{
+      font-size: 16px;
+    }
+    summary{
+      visibility: visible;
+      height: auto;
+    }
+    /* .month-heading{
+      max-width: 84%;
+      max-width: 260px;
+      margin-left: auto;
+      margin-right: auto;
+      width: fit-content;
+    } */
+    .slideoutButtonWrapper{
+      visibility: collapse;
+      width: 0px;
+    }
+
+  }
+  
+  @media only screen and (max-height: 590px){
+    .menu{
+      overflow-y: scroll;
+      z-index: 2;
+    }
+    h2{
+      margin: 0px 10px;
+    }
+    .dateSection{
+      margin: 20px 0px;
+    }
+  }
+  @media only screen and (max-width:900px){
+    .navbar{
+      padding-left: 0px;
+    }
+    .desc-wrapper{
+        max-width: 65%;
+    }
+  }
+  @media only screen and (min-width:900px){
+    .slideoutButtonWrapper{
+      visibility: collapse;
+      width: 0px;
+     }
+  }
+  @media (any-hover: none){
+    .action_bar{
+      visibility: visible;
+    }
+    .hideCompleted,.postSubmit{
+      font-size: 14pt;
+    }
+    .edit, .close, .check{
+      font-size: 14pt;
+    }
+    .edit, .close{
+        padding: 0 8px;
+    }
+    .desc{
+        margin-top: 4px;
+    }
+  }
