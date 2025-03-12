@@ -241,8 +241,31 @@ function constructEditBtn(){
 }
 function deleteTask(ev){
   ev.preventDefault();
-  changeState(ev,"deleted");
-  updateTaskList();
+  var confirmDeleteDialog = createElement('dialog', "confimDeleteDialog");
+  var main = document.querySelector('.main');
+  main.appendChild(confirmDeleteDialog);
+  var title = createElement('h3',"dialog-title");
+  title.textContent = "Delete Task?"
+  confirmDeleteDialog.append(title);
+  var deleteMessage = createElement('p',"delete-message");
+  var deleteMessageText = "Do you want to delete this task?";
+  deleteMessage.textContent = deleteMessageText;
+  confirmDeleteDialog.append(deleteMessage); 
+  var yesBtn = createElement('button',"yesBtn");
+  var noBtn = createElement('button',"noBtn");
+  yesBtn.textContent="Yes";
+  noBtn.textContent="No";
+  confirmDeleteDialog.append(noBtn,yesBtn);
+  confirmDeleteDialog.showModal();
+  yesBtn.addEventListener("click",(event)=>{
+    changeState(ev,"deleted");
+    updateTaskList();
+    confirmDeleteDialog.close();
+  });
+  noBtn.addEventListener("click",(event)=>{
+    confirmDeleteDialog.close();
+  })
+  
 }
 function completeTask(ev){
   ev.preventDefault();
@@ -275,9 +298,9 @@ var completedVisible = true; ///This is a random global variable in the middle o
 function filterCompletedTasks(ev){
   ev.preventDefault();
   if(completedVisible){
-    this.textContent = "Show Completed";
+    this.textContent = "Show Completed Tasks";
   }else{
-    this.textContent = "Hide Completed";
+    this.textContent = "Hide Completed Tasks";
   }
   toggleCompletedTasks();
   completedVisible = !completedVisible;
