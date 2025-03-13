@@ -1,0 +1,128 @@
+.main{
+    width: 45%;
+    margin: auto;
+    margin-top: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    height: 94%;
+  
+}
+ .full-width-main{ /*this is for small screens with the sidebar collapsed*/
+    width: 80% !important;
+  }
+.dateSection{
+    margin: 25px 0;
+}
+.dateSection h3{
+    color: #666;
+    margin: 10px 0;
+}
+.dateSection hr{
+    color: #d5d5d5;
+}
+.tasklist{
+    overflow-y: auto;
+}
+.task{
+    padding: 8px 0px;
+}
+.task:hover{
+    background-color: #ececec;
+}
+.task button{
+    background: none;
+    color: grey;
+}
+.task_content{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.close, .edit{
+    padding: 0 4px;
+    /* padding-bottom: 6px; */
+    font-size: 14pt;
+}
+
+.noBtn, .yesBtn{
+    float: right;
+    margin: 0px 5px !important;
+    width: 25%;
+}
+.desc-wrapper{
+    display:flex;
+    align-items: flex-start;
+    max-width: 80%;
+}
+
+.desc{
+    word-wrap: break-word;
+    display: inline-block;
+}
+.action_bar{
+    float: right;
+    visibility: hidden;
+    padding: 0 8px; 
+}
+.task:hover .action_bar{
+    visibility: visible;
+}
+.close:hover{
+      color:orangered;
+}
+.overdue{
+    /* display: none; */
+    color:orangered;
+    background-color: #fee;
+}
+.overdue:hover{
+    background-color:#e8d7d7;
+}
+.deleted{
+    display: none;
+    /* background-color: #ffc2c2; */
+}
+.check{
+    width: 30px;
+}
+
+.completed .check{
+    color: green;
+    content: "✓";
+}
+.completed span{
+    text-decoration: line-through;
+    color: darkgrey;
+}
+
+.hidden{
+    display: none;
+}
+
+.editForm{
+    /* margin: 0 5px; */
+    padding-left: 40px;
+}
+.editForm input[type=text]{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid grey;
+    border-radius: 3px;
+    outline: 0px solid transparent;
+}
+.editForm input[type=date]{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid grey;
+    border-radius: 3px;
+    outline: 0px solid transparent;
+}
+
+.editForm :is(button,input,select){
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,0 +1,86 @@
+.menu{
+    width: 385px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
+    padding: 15px 20px;
+    background-color: white;
+    visibility: visible;
+}
+.sidebar-closed{
+    width: 0px !important;
+    padding: 0px !important;
+    visibility: hidden !important;
+}
+.formWrapper{
+    visibility: hidden;
+}
+.editForm button{
+    background-color: orangered;
+    color: white;
+    height: 25px;
+    margin: 5px;
+    font-family: Raleway;
+    float: right;
+}
+.hideCompleted{
+    width: 100%;
+}
+.postSubmit{
+    width: 25%;
+    float:right;
+}
+.nameField{
+    width: 79.75%;
+}
+.mini-cal{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1.5px solid darkgrey;
+    border-radius: 2px;
+}
+.mini-cal-header{
+    display: flex;
+}
+.dayOfWeek{
+    background-color: #ececec;
+    border-bottom: 1.5px solid darkgrey;
+    margin: 0;
+    padding: 8px 0;
+    font-weight: bold;
+}
+.mini-cal-cell p{
+    /* background-color: orangered;
+    opacity: 0.0; */
+    /* border-radius: 50%; */
+    padding: 0;
+    margin: 8px 0;
+}
+.mini-cal p{
+    text-align: center;
+}
+.mini-cal .today{
+    border: 1.5px solid grey;
+}
+.task-count{
+    background-color: orangered;
+    opacity: 0.0;
+    height: 10px;
+}
+.next{
+    float: right;
+}
+.prev, .next{
+    border-radius: 50%;
+    width: 25px;
+}
+.month-heading{
+    font-family: "Zilla Slab";
+    font-size: 20px;
+    width: 84%;
+    text-align: center;
+    padding: 0;
+    margin: 5px 0;
+    display: inline-block;
+}
+.other-month{
+    color: grey;
+}  

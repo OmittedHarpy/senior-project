@@ -26,26 +26,6 @@ span{
 p{
   font-family: Raleway;
 }
-.task{
-  padding: 8px 0px;
-}
-.task:hover{
-  background-color: #ececec;
-}
-.task button{
-  background: none;
-  color: grey;
-}
-.task_content{
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.close, .edit{
-  padding: 0 4px;
-  /* padding-bottom: 6px; */
-  font-size: 14pt;
-}
 
 dialog{
   border-color: transparent;
@@ -58,90 +38,8 @@ dialog h3{
   margin-top: 10px;
 }
 
-.noBtn, .yesBtn{
-  float: right;
-  margin: 0px 5px !important;
-  width: 25%;
-}
-.desc-wrapper{
-  display:flex;
-  align-items: flex-start;
-  max-width: 80%;
-}
-
-.desc{
-  word-wrap: break-word;
-  display: inline-block;
-}
-.action_bar{
-  float: right;
-  visibility: hidden;
-  padding: 0 8px;
-
-}
-.task:hover .action_bar{
-  visibility: visible;
-}
-.close:hover{
-    /* background-color: orangered;
-    color:white; */
-}
-.overdue{
-  /* display: none; */
-  color:orangered;
-  background-color: #fee;
-}
-.overdue:hover{
-  background-color:#e8d7d7;
-}
-.deleted{
-  display: none;
-  /* background-color: #ffc2c2; */
-}
-.check{
-  width: 30px;
-}
-
-.completed .check{
-  color: green;
-  content: "✓";
-}
-.completed span{
-  text-decoration: line-through;
-  color: darkgrey;
-}
-
-.hidden{
-  display: none;
-}
 section{
   overflow-y: hidden;
-}
-.main{
-  width: 45%;
-  margin: auto;
-  margin-top: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: white;
-  display: flex;
-  flex-flow: column;
-  height: 94%;
-
-}
-.tasklist{
-  overflow-y: auto;
-}
-.menu{
-  width: 385px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
-  padding: 15px 20px;
-  background-color: white;
-  visibility: visible;
-}
-.formWrapper{
-  visibility: hidden;
 }
 button{
   background-color: orangered;
@@ -158,21 +56,6 @@ button:not(.tasklist button, .slideoutButton) {
   height: 25px;
   margin: 5px 0;
   font-family: Raleway;
-}
-.editForm button{
-  background-color: orangered;
-  color: white;
-  height: 25px;
-  margin: 5px;
-  font-family: Raleway;
-  float: right;
-}
-.hideCompleted{
-  width: 100%;
-}
-.postSubmit{
-  width: 25%;
-  float:right;
 }
 fieldset{
   margin: 0;
@@ -197,34 +80,8 @@ label{
 input[type=text]{
   padding: 5px;
 }
-.nameField{
-  width: 79.75%;
-}
 input[type=date]{
   font-family: Raleway;
-}
-.editForm{
-  /* margin: 0 5px; */
-  padding-left: 40px;
-}
-.editForm input[type=text]{
-  background-color: transparent;
-  border: none;
-  border-bottom: 1.5px solid grey;
-  border-radius: 3px;
-  outline: 0px solid transparent;
-}
-.editForm input[type=date]{
-  background-color: transparent;
-  border: none;
-  border-bottom: 1.5px solid grey;
-  border-radius: 3px;
-  outline: 0px solid transparent;
-}
-
-.editForm :is(button,input,select){
-  margin-top: 0;
-  margin-bottom: 0;
 }
 .outer_column {
   display: flex;
@@ -239,17 +96,6 @@ input[type=date]{
 .inner_remaining {
   flex-grow: 1;
 }
-.dateSection{
-  margin: 25px 0;
-}
-.dateSection h3{
-  color: #666;
-  margin: 10px 0;
-}
-.dateSection hr{
-  color: #d5d5d5;
-}
-
 pre {
   display: inline;
   font-family: Raleway;
@@ -263,9 +109,6 @@ a{
   /* min-height: 30px; */
   background-color: white;
   padding: 0px 20px;
-  /* box-shadow:
-  0 4px 8px 0 rgba(0, 0, 0, 0.2);
-   0 6px 10px 0 rgba(0, 0, 0, 0.09); */
   border-bottom: 1px solid #d5d5d5;
 }
 .navbar div{
@@ -282,76 +125,6 @@ a{
   color: #4a4a4a;
   font-weight: bold;
 }
-/* [contenteditable]{
-  outline: 0px solid transparent;
-} */
- summary{
-  font-family: Raleway;
-  visibility: hidden;
-  height: 0px;
- }
-.mini-cal{
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  border: 1.5px solid darkgrey;
-  border-radius: 2px;
-}
-.mini-cal-header{
-  display: flex;
-}
-.dayOfWeek{
-  background-color: #ececec;
-  border-bottom: 1.5px solid darkgrey;
-  margin: 0;
-  padding: 8px 0;
-  font-weight: bold;
-}
-.mini-cal-cell p{
-  /* background-color: orangered;
-  opacity: 0.0; */
-  /* border-radius: 50%; */
-  padding: 0;
-  margin: 8px 0;
-}
-.mini-cal p{
-  text-align: center;
-}
-.mini-cal .today{
-  border: 1.5px solid grey;
-}
-.task-count{
-  background-color: orangered;
-  opacity: 0.0;
-  height: 10px;
-}
-.next{
-  float: right;
-}
-.prev, .next{
-  border-radius: 50%;
-  width: 25px;
-}
-.month-heading{
-  font-family: "Zilla Slab";
-  font-size: 20px;
-  width: 84%;
-  text-align: center;
-  padding: 0;
-  margin: 5px 0;
-  display: inline-block;
-}
-.other-month{
-  color: grey;
-}
-
-.sidebar-closed{
-  width: 0px !important;
-  padding: 0px !important;
-  visibility: hidden !important;
-}
-.full-width-main{
-  width: 80% !important;
-}
 
 .slideoutButton{
   margin: 0px;
@@ -362,3 +135,8 @@ a{
 .slideoutButtonWrapper{
   padding: 0px !important;
 }
+summary{
+  font-family: Raleway;
+  visibility: hidden;
+  height: 0px;
+ }
